@@ -1,0 +1,6 @@
+D:\CodeJams\assg\client\bin\Debug\client.exe.config
+D:\CodeJams\assg\client\bin\Debug\client.exe
+D:\CodeJams\assg\client\bin\Debug\client.pdb
+D:\CodeJams\assg\client\obj\Debug\client.csprojResolveAssemblyReference.cache
+D:\CodeJams\assg\client\obj\Debug\client.exe
+D:\CodeJams\assg\client\obj\Debug\client.pdb

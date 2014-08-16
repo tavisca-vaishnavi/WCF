@@ -1,0 +1,5 @@
+D:\CodeJams\assg\assg\bin\assg.dll
+D:\CodeJams\assg\assg\bin\assg.pdb
+D:\CodeJams\assg\assg\obj\Debug\assg.csprojResolveAssemblyReference.cache
+D:\CodeJams\assg\assg\obj\Debug\assg.dll
+D:\CodeJams\assg\assg\obj\Debug\assg.pdb
