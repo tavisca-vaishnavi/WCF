@@ -8,20 +8,32 @@ using System.Text;
 
 namespace assg
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in code, svc and config file together.
-    // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple)]
     public class Service1 : IAddEmpRecords, IRetrieveDetails
     {
-        static public List<Employee> EmpList = new List<Employee>();
+         public List<Employee> EmpList = new List<Employee>();
 
-        public string AddEmployee(string id, string name)
-        {
-            Employee emp = new Employee();
-            emp.id = id;
-            emp.Name = name;
-            EmpList.Add(emp);
-            return ("Added Record");
-        }
+         public string AddEmployee(string id, string name)
+         {
+             Employee emp = new Employee();
+             id = id.Trim();
+             if (id == null || id == "")
+             {
+                 throw new FaultException(new FaultReason("Id Null Not Allowed"), new FaultCode("104"));
+             }
+             else
+             {
+                 foreach (Employee e in EmpList)
+                 {
+                     if (e.id.Equals(id))
+                         throw new FaultException(new FaultReason("Id Already Exists"), new FaultCode("103"));
+                 }
+                 emp.id = id;
+                 emp.Name = name;
+                 EmpList.Add(emp);
+                 return ("Added Record");
+             }
+         }
 
         public Employee AddRemarks(string id, string remarks)
         {
@@ -65,6 +77,10 @@ namespace assg
         IEnumerable<Employee> IRetrieveDetails.GetAllDetails()
         {
             return EmpList;
+        }
+
+        public void ClearAllData() { 
+            EmpList.Clear();
         }
     }
 }

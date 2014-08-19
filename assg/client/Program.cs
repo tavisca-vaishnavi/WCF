@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,6 +15,7 @@ namespace client
             AddEmpRecordsClient client = new AddEmpRecordsClient();
             RetrieveDetailsClient client2 = new RetrieveDetailsClient();
             string choice;
+            string result;
             int ch;
             do
             {
@@ -36,8 +38,24 @@ namespace client
                         string id = Console.ReadLine();
                         Console.WriteLine("Enter Name");
                         string name = Console.ReadLine();
-                        string result = client.AddEmployee(id, name);
-                        Console.WriteLine(result);
+                        try
+                        {
+                             result = client.AddEmployee(id, name);
+                             Console.WriteLine(result);
+
+                        }
+                        catch (FaultException e)
+                        {
+                            if (e.Code.Name == "103")
+                            {
+                                Console.WriteLine("{0}", e.Reason);
+                            }
+                            if (e.Code.Name == "104")
+                            {
+                                Console.WriteLine("{0}", e.Reason);
+                            }
+                            
+                        }
                         break;
 
                     case 2:
@@ -45,30 +63,51 @@ namespace client
                         Console.WriteLine("Enter Id");
                         string idForSearch = Console.ReadLine();
                         Employee SearchedEmp = new Employee();
-                        SearchedEmp = client2.Search(idForSearch);
-                        if (SearchedEmp != null)
+                        try
                         {
-                            Console.WriteLine("Required Emp ID " + SearchedEmp.id);
-                            Console.WriteLine("Required Emp Name " + SearchedEmp.Name);
-                            Console.WriteLine("Required Emp Remarks " + SearchedEmp.Remarks);
+                            SearchedEmp = client2.Search(idForSearch);
+                            if (SearchedEmp != null)
+                            {
+                                Console.WriteLine("Required Emp ID " + SearchedEmp.id);
+                                Console.WriteLine("Required Emp Name " + SearchedEmp.Name);
+                                Console.WriteLine("Required Emp Remarks " + SearchedEmp.Remarks);
+                            }
                         }
-                        else
-                            Console.WriteLine("No Records Found");
+                        catch (FaultException e)
+                        {
+                            if (e.Code.Name == "101")
+                            {
+                                Console.WriteLine("{0}", e.Reason);
+                            }
+                        }
                         break;
 
                     case 3:
                         //Add Remarks To Records
+                        
                         Console.WriteLine("Enter Employee Id");
                         string idForRemarks = Console.ReadLine();
                         Console.WriteLine("Enter Remarks");
                         string remarks = Console.ReadLine();
                         Employee e_obj = new Employee();
-                        e_obj = client.AddRemarks(idForRemarks, remarks);
-                        if (e_obj != null)
+                        e_obj.getDateTime = DateTime.Now;
+                        try
                         {
-                            Console.WriteLine("Emp ID" + e_obj.id);
-                            Console.WriteLine("Emp ID" + e_obj.Name);
-                            Console.WriteLine("Emp ID" + e_obj.Remarks);
+                            e_obj = client.AddRemarks(idForRemarks, remarks);
+                            if (e_obj != null)
+                            {
+                                Console.WriteLine("Emp ID" + e_obj.id);
+                                Console.WriteLine("Emp ID" + e_obj.Name);
+                                Console.WriteLine("Emp ID" + e_obj.Remarks);
+                                Console.WriteLine("Remarks Added On : " + e_obj.getDateTime);
+                            }
+                        }
+                        catch (FaultException e)
+                        {
+                            if (e.Code.Name == "102")
+                            {
+                                Console.WriteLine("{0}", e.Reason);
+                            }
                         }
                         break;
 
@@ -97,52 +136,6 @@ namespace client
                         break;
                 }
             } while (ch != 6);
-
-
-
-
-
-
-
-
-            //Added
-            //string result=client.AddEmployee("101", "drux");
-            //Console.WriteLine(result);
-            //search
-            Employee e = new Employee();
-            //e = client2.Search("101");
-            //if (e != null)
-            //{
-            //    Console.WriteLine("Emp ID" + e.id);
-            //    Console.WriteLine("Emp ID" + e.Name);
-            //    // Console.WriteLine("Emp ID" + e.Remarks);
-            //}
-
-            //all details
-            //List<Employee> AllEmpDetails = new List<Employee>();
-            //AllEmpDetails = client2.GetAllDetails();
-            //foreach (Employee e1 in AllEmpDetails)
-            //{
-            //    Console.WriteLine("Emp ID" + e1.id);
-            //    Console.WriteLine("Emp ID" + e1.Name);
-            //    Console.WriteLine("Emp ID" + e1.Remarks);
-            //}
-
-            ////Add Remarks
-            //Employee e_obj = new Employee();
-            //e_obj = client.AddRemarks("101", "very poor");
-            //if (e != null)
-            //{
-            //    Console.WriteLine("Emp ID" + e_obj.id);
-            //    Console.WriteLine("Emp ID" + e_obj.Name);
-            //    Console.WriteLine("Emp ID" + e_obj.Remarks);
-            //}
-
-            //delete
-            //int del = client.delete("101");
-            //Console.WriteLine("deleted");
-
-           
         }
     }
 }

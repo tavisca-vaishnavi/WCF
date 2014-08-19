@@ -1,0 +1,8 @@
+D:\CodeJams\assg\Fixtures\bin\Debug\Fixtures.dll.config
+D:\CodeJams\assg\Fixtures\bin\Debug\Fixtures.dll
+D:\CodeJams\assg\Fixtures\bin\Debug\Fixtures.pdb
+D:\CodeJams\assg\Fixtures\bin\Debug\assg.dll
+D:\CodeJams\assg\Fixtures\bin\Debug\assg.pdb
+D:\CodeJams\assg\Fixtures\obj\Debug\Fixtures.csprojResolveAssemblyReference.cache
+D:\CodeJams\assg\Fixtures\obj\Debug\Fixtures.dll
+D:\CodeJams\assg\Fixtures\obj\Debug\Fixtures.pdb

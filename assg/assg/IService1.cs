@@ -22,6 +22,9 @@ namespace assg
         [OperationContract]
     Employee AddRemarks(string id, string remarks);
 
+        [OperationContract]
+        void ClearAllData();
+
     }
      [ServiceContract]
     public interface IRetrieveDetails
@@ -35,6 +38,7 @@ namespace assg
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.
     [DataContract]
+
     public class Employee
     {
         [DataMember]
@@ -43,6 +47,8 @@ namespace assg
         public string id { get; set; }
         [DataMember]
         public string Remarks { get; set; }
+        [DataMember]
+        public DateTime getDateTime { get; set; }
     }
 
 }
