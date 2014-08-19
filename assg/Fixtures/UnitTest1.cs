@@ -158,5 +158,51 @@ namespace Fixtures
             AllEmpDetails = client2.GetAllDetails();
             Assert.IsNotNull(AllEmpDetails);
         }
+        [TestMethod]
+        public void CheckNameNull() {
+            Employee emp = new Employee();
+
+            int len = client2.GetAllDetails().Count;
+            try
+            {
+                client.AddEmployee("101", "");
+            }
+            catch (FaultException e)
+            {
+                Assert.AreEqual(len, client2.GetAllDetails().Count);
+            }
+            finally
+            {
+                client.ClearAllData();
+            }
+        }
+        [TestMethod]
+        public void CheckRemarkForNull() {
+            Employee test = null;
+            try {
+               
+                Remarks remark = new Remarks();
+                client.AddEmployee("112", "Vaishnavi");
+                test = client.AddRemarks("112", "");
+            }
+            catch (FaultException ex) {
+                Assert.IsNull(test);
+            }
+        }
+        [TestMethod]
+        public void IsSearchIdNull()
+        {
+            Employee e = null;
+            try
+            {
+                client.AddEmployee("1", "AAA");
+                e = client2.Search("");
+            }
+            catch (FaultException ex) {
+                Assert.IsNull(e);
+             
+            }
+            
+        }
     }
 }

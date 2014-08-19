@@ -16,13 +16,9 @@ namespace assg
          public string AddEmployee(string id, string name)
          {
              Employee emp = new Employee();
-             id = id.Trim();
-             if (id == null || id == "")
-             {
-                 throw new FaultException(new FaultReason("Id Null Not Allowed"), new FaultCode("104"));
-             }
-             else
-             {
+            
+            
+             
                  foreach (Employee e in EmpList)
                  {
                      if (e.Id.Equals(id))
@@ -32,7 +28,7 @@ namespace assg
                  emp.Name = name;
                  EmpList.Add(emp);
                  return "Added Record";
-             }
+             
          }
 
         public Remarks AddRemarks(string id, string remarks)
