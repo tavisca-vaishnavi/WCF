@@ -110,6 +110,12 @@ namespace Fixtures.myservice {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRetrieveDetails/Search", ReplyAction="http://tempuri.org/IRetrieveDetails/SearchResponse")]
         System.Threading.Tasks.Task<assg.Employee> SearchAsync(string id);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRetrieveDetails/SearchByName", ReplyAction="http://tempuri.org/IRetrieveDetails/SearchByNameResponse")]
+        assg.Employee SearchByName(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRetrieveDetails/SearchByName", ReplyAction="http://tempuri.org/IRetrieveDetails/SearchByNameResponse")]
+        System.Threading.Tasks.Task<assg.Employee> SearchByNameAsync(string name);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRetrieveDetails/GetAllDetails", ReplyAction="http://tempuri.org/IRetrieveDetails/GetAllDetailsResponse")]
         assg.Employee[] GetAllDetails();
         
@@ -150,6 +156,14 @@ namespace Fixtures.myservice {
         
         public System.Threading.Tasks.Task<assg.Employee> SearchAsync(string id) {
             return base.Channel.SearchAsync(id);
+        }
+        
+        public assg.Employee SearchByName(string name) {
+            return base.Channel.SearchByName(name);
+        }
+        
+        public System.Threading.Tasks.Task<assg.Employee> SearchByNameAsync(string name) {
+            return base.Channel.SearchByNameAsync(name);
         }
         
         public assg.Employee[] GetAllDetails() {

@@ -107,5 +107,47 @@ namespace Fixtures
             int val = client.delete("110");
             Assert.AreEqual(1, val);
         }
+        [TestMethod]
+        public void SearchByNameTest()
+        {
+            Employee e = new Employee();
+            client.AddEmployee("1111", "AAA");
+            e = client2.SearchByName("AAA");
+            Assert.AreEqual(e.Name, "AAA");
+            client.ClearAllData();
+        }
+        [TestMethod]
+        public void AddRemarkForNotExistingId()
+        {
+            try {
+                Employee eForRemarks = new Employee();
+                eForRemarks = client.AddRemarks("2", "good");
+            }
+            catch (FaultException e) {
+                if (e.Code.Name == "102")
+                {
+                    Console.WriteLine("{0}", e.Reason);
+                    Assert.AreEqual("Employee Record Not Found For Inserting Remarks", e.Reason.ToString());
+                    
+                }
+            }
+        }
+        [TestMethod]
+        public void SearchForNotExistingNameTest() {
+            Employee emp = null;
+            try
+            {
+                emp = client2.SearchByName("BBB");
+            }
+            catch (FaultException e)
+            {
+                if (e.Code.Name == "105")
+                {
+                    Console.WriteLine("{0}", e.Reason);
+                    Assert.AreEqual("Employee Record of this name Not Found", e.Reason.ToString());
+                    Assert.IsNull(emp);
+                }
+            }
+        }
     }
 }

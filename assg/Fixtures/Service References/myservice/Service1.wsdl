@@ -37,6 +37,12 @@
   <wsdl:message name="IRetrieveDetails_Search_OutputMessage">
     <wsdl:part name="parameters" element="tns:SearchResponse" />
   </wsdl:message>
+  <wsdl:message name="IRetrieveDetails_SearchByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchByName" />
+  </wsdl:message>
+  <wsdl:message name="IRetrieveDetails_SearchByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchByNameResponse" />
+  </wsdl:message>
   <wsdl:message name="IRetrieveDetails_GetAllDetails_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAllDetails" />
   </wsdl:message>
@@ -65,6 +71,10 @@
     <wsdl:operation name="Search">
       <wsdl:input wsaw:Action="http://tempuri.org/IRetrieveDetails/Search" message="tns:IRetrieveDetails_Search_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRetrieveDetails/SearchResponse" message="tns:IRetrieveDetails_Search_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchByName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRetrieveDetails/SearchByName" message="tns:IRetrieveDetails_SearchByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRetrieveDetails/SearchByNameResponse" message="tns:IRetrieveDetails_SearchByName_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetAllDetails">
       <wsdl:input wsaw:Action="http://tempuri.org/IRetrieveDetails/GetAllDetails" message="tns:IRetrieveDetails_GetAllDetails_InputMessage" />
@@ -114,6 +124,15 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="Search">
       <soap:operation soapAction="http://tempuri.org/IRetrieveDetails/Search" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchByName">
+      <soap:operation soapAction="http://tempuri.org/IRetrieveDetails/SearchByName" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
