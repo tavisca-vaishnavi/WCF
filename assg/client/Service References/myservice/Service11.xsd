@@ -41,8 +41,18 @@
   <xs:element name="AddRemarksResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/assg" minOccurs="0" name="AddRemarksResult" nillable="true" type="q1:Employee" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/assg" minOccurs="0" name="AddRemarksResult" nillable="true" type="q1:Remarks" />
       </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ClearAllData">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ClearAllDataResponse">
+    <xs:complexType>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="Search">
@@ -59,6 +69,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="SearchByName">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SearchByNameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/assg" minOccurs="0" name="SearchByNameResult" nillable="true" type="q3:Employee" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetAllDetails">
     <xs:complexType>
       <xs:sequence />
@@ -67,7 +91,47 @@
   <xs:element name="GetAllDetailsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/assg" minOccurs="0" name="GetAllDetailsResult" nillable="true" type="q3:ArrayOfEmployee" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/assg" minOccurs="0" name="GetAllDetailsResult" nillable="true" type="q4:ArrayOfEmployee" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllRemarks">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllRemarksResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/assg" minOccurs="0" name="GetAllRemarksResult" nillable="true" type="q5:ArrayOfRemarks" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNameFromId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNameFromIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetNameFromIdResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRemarks">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRemarksResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/assg" minOccurs="0" name="GetRemarksResult" nillable="true" type="q6:ArrayOfRemarks" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

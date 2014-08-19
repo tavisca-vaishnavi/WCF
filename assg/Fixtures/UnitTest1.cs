@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using assg;
 using Fixtures.myservice;
 using System.ServiceModel;
+using System.Collections.Generic;
 
 namespace Fixtures
 {
@@ -15,7 +16,7 @@ namespace Fixtures
         public void CheckEmployeeExist()
         {
             Employee emp = new Employee();
-            int len = client2.GetAllDetails().Length;
+            int len = client2.GetAllDetails().Count;
             try
             {
                 client.AddEmployee("72", "Vaish");
@@ -23,7 +24,7 @@ namespace Fixtures
             }
             catch (FaultException e)
             {
-                Assert.AreEqual(1, client2.GetAllDetails().Length);
+                Assert.AreEqual(1, client2.GetAllDetails().Count);
             }
             finally {
                 client.ClearAllData();
@@ -34,14 +35,15 @@ namespace Fixtures
         public void CheckNullId()
         {
             Employee emp = new Employee();
-            int len = client2.GetAllDetails().Length;
+           
+            int len = client2.GetAllDetails().Count;
             try
             {
                 client.AddEmployee("", "AAA");
             }
             catch (FaultException e)
             {
-                Assert.AreEqual(len, client2.GetAllDetails().Length);
+                Assert.AreEqual(len, client2.GetAllDetails().Count);
             }
             finally
             {
@@ -77,7 +79,7 @@ namespace Fixtures
             Employee e = new Employee();
             client.AddEmployee("1", "AAA");
             e = client2.Search("1");
-            Assert.AreEqual(e.id, "1");
+            Assert.AreEqual(e.Id, "1");
             client.ClearAllData();
         }
         
@@ -94,6 +96,7 @@ namespace Fixtures
         public void AddRemarksTest()
         {
             Employee test = null;
+            Remarks remark = new Remarks();
             client.AddEmployee("112", "Vaishnavi");
             test = client.AddRemarks("112", "good");
             Assert.IsNotNull(test);
@@ -148,6 +151,12 @@ namespace Fixtures
                     Assert.IsNull(emp);
                 }
             }
+        }
+        [TestMethod]
+        public void GetDetailsTest() {
+            List<Employee> AllEmpDetails = new List<Employee>();
+            AllEmpDetails = client2.GetAllDetails();
+            Assert.IsNotNull(AllEmpDetails);
         }
     }
 }

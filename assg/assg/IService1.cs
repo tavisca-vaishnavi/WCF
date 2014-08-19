@@ -20,7 +20,7 @@ namespace assg
         int delete(string id);
 
         [OperationContract]
-    Employee AddRemarks(string id, string remarks);
+         Remarks AddRemarks(string id, string remarks);
 
         [OperationContract]
         void ClearAllData();
@@ -33,7 +33,19 @@ namespace assg
         Employee Search(string id);
 
         [OperationContract]
+        Employee SearchByName(string name);
+
+        [OperationContract]
         IEnumerable<Employee> GetAllDetails();
+
+        [OperationContract]
+        IEnumerable<Remarks> GetAllRemarks();
+
+        [OperationContract]
+        string GetNameFromId(string id);
+
+        [OperationContract]
+        IEnumerable<Remarks> GetRemarks(string id);
     }
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.
@@ -44,11 +56,18 @@ namespace assg
         [DataMember]
         public string Name { get; set; }
         [DataMember]
-        public string id { get; set; }
+        public string Id { get; set; }
+
+    }
+
+    [DataContract]
+    public class Remarks {
         [DataMember]
-        public string Remarks { get; set; }
+        public string Id { get; set; }
         [DataMember]
-        public DateTime getDateTime { get; set; }
+        public string Remark { get; set; }
+        [DataMember]
+        public DateTime GetDateTime { get; set; }
     }
 
 }

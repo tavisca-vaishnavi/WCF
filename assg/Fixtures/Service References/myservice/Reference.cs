@@ -117,10 +117,10 @@ namespace Fixtures.myservice {
         System.Threading.Tasks.Task<assg.Employee> SearchByNameAsync(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRetrieveDetails/GetAllDetails", ReplyAction="http://tempuri.org/IRetrieveDetails/GetAllDetailsResponse")]
-        assg.Employee[] GetAllDetails();
+        System.Collections.Generic.List<assg.Employee> GetAllDetails();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRetrieveDetails/GetAllDetails", ReplyAction="http://tempuri.org/IRetrieveDetails/GetAllDetailsResponse")]
-        System.Threading.Tasks.Task<assg.Employee[]> GetAllDetailsAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<assg.Employee>> GetAllDetailsAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -166,11 +166,11 @@ namespace Fixtures.myservice {
             return base.Channel.SearchByNameAsync(name);
         }
         
-        public assg.Employee[] GetAllDetails() {
+        public System.Collections.Generic.List<assg.Employee> GetAllDetails() {
             return base.Channel.GetAllDetails();
         }
         
-        public System.Threading.Tasks.Task<assg.Employee[]> GetAllDetailsAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<assg.Employee>> GetAllDetailsAsync() {
             return base.Channel.GetAllDetailsAsync();
         }
     }

@@ -40,8 +40,8 @@ namespace client
                         string name = Console.ReadLine();
                         try
                         {
-                             result = client.AddEmployee(id, name);
-                             Console.WriteLine(result);
+                            result = client.AddEmployee(id, name);
+                            Console.WriteLine(result);
 
                         }
                         catch (FaultException e)
@@ -54,7 +54,7 @@ namespace client
                             {
                                 Console.WriteLine("{0}", e.Reason);
                             }
-                            
+
                         }
                         break;
 
@@ -68,9 +68,9 @@ namespace client
                             SearchedEmp = client2.Search(idForSearch);
                             if (SearchedEmp != null)
                             {
-                                Console.WriteLine("Required Emp ID " + SearchedEmp.id);
+                                Console.WriteLine("Required Emp ID " + SearchedEmp.Id);
                                 Console.WriteLine("Required Emp Name " + SearchedEmp.Name);
-                                Console.WriteLine("Required Emp Remarks " + SearchedEmp.Remarks);
+                                // Console.WriteLine("Required Emp Remarks " + SearchedEmp.Remarks);
                             }
                         }
                         catch (FaultException e)
@@ -84,29 +84,31 @@ namespace client
 
                     case 3:
                         //Add Remarks To Records
-                        
+
                         Console.WriteLine("Enter Employee Id");
                         string idForRemarks = Console.ReadLine();
                         Console.WriteLine("Enter Remarks");
                         string remarks = Console.ReadLine();
-                        Employee e_obj = new Employee();
-                        e_obj.getDateTime = DateTime.Now;
+                        Remarks e_obj = new Remarks();
+                        Employee emp = new Employee();
+                        e_obj.GetDateTime = DateTime.Now;
                         try
                         {
                             e_obj = client.AddRemarks(idForRemarks, remarks);
+                            string nameForRemarks = client2.GetNameFromId(idForRemarks);
                             if (e_obj != null)
                             {
-                                Console.WriteLine("Emp ID" + e_obj.id);
-                                Console.WriteLine("Emp ID" + e_obj.Name);
-                                Console.WriteLine("Emp ID" + e_obj.Remarks);
-                                Console.WriteLine("Remarks Added On : " + e_obj.getDateTime);
+                                Console.WriteLine("Emp ID " + e_obj.Id);
+                                Console.WriteLine("Emp Name " + nameForRemarks);
+                                Console.WriteLine("Emp Remarks " + e_obj.Remark);
+                                Console.WriteLine("Remarks Added On : " + e_obj.GetDateTime);
                             }
                         }
-                        catch (FaultException e)
+                        catch (FaultException ex)
                         {
-                            if (e.Code.Name == "102")
+                            if (ex.Code.Name == "102")
                             {
-                                Console.WriteLine("{0}", e.Reason);
+                                Console.WriteLine("{0}", ex.Reason);
                             }
                         }
                         break;
@@ -115,12 +117,21 @@ namespace client
                         //Get All Records
                         Console.WriteLine("***** All Records *****");
                         List<Employee> AllEmpDetails = new List<Employee>();
+                        List<Remarks> AllRemarkDetails = new List<Remarks>();
+                        //string remarkForSelectedEmployee;
                         AllEmpDetails = client2.GetAllDetails();
+
                         foreach (Employee e1 in AllEmpDetails)
                         {
-                            Console.WriteLine("Emp ID" + e1.id);
-                            Console.WriteLine("Emp ID" + e1.Name);
-                            Console.WriteLine("Emp ID" + e1.Remarks);
+                            Console.WriteLine("Emp ID " + e1.Id);
+                            Console.WriteLine("Emp Name " + e1.Name);
+                            List<Remarks> remarksList = client2.GetRemarks(e1.Id);
+                            foreach (Remarks rem in remarksList)
+                            {
+                                Console.WriteLine("Emp Remarks "+rem.Remark);
+                                Console.WriteLine("Time " + rem.GetDateTime);
+                            }
+                            //Console.WriteLine("Emp ID" + e1.Remarks);
                         }
                         break;
 

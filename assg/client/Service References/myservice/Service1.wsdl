@@ -25,17 +25,47 @@
   <wsdl:message name="IAddEmpRecords_AddRemarks_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddRemarksResponse" />
   </wsdl:message>
+  <wsdl:message name="IAddEmpRecords_ClearAllData_InputMessage">
+    <wsdl:part name="parameters" element="tns:ClearAllData" />
+  </wsdl:message>
+  <wsdl:message name="IAddEmpRecords_ClearAllData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ClearAllDataResponse" />
+  </wsdl:message>
   <wsdl:message name="IRetrieveDetails_Search_InputMessage">
     <wsdl:part name="parameters" element="tns:Search" />
   </wsdl:message>
   <wsdl:message name="IRetrieveDetails_Search_OutputMessage">
     <wsdl:part name="parameters" element="tns:SearchResponse" />
   </wsdl:message>
+  <wsdl:message name="IRetrieveDetails_SearchByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchByName" />
+  </wsdl:message>
+  <wsdl:message name="IRetrieveDetails_SearchByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchByNameResponse" />
+  </wsdl:message>
   <wsdl:message name="IRetrieveDetails_GetAllDetails_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAllDetails" />
   </wsdl:message>
   <wsdl:message name="IRetrieveDetails_GetAllDetails_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRetrieveDetails_GetAllRemarks_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllRemarks" />
+  </wsdl:message>
+  <wsdl:message name="IRetrieveDetails_GetAllRemarks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllRemarksResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRetrieveDetails_GetNameFromId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNameFromId" />
+  </wsdl:message>
+  <wsdl:message name="IRetrieveDetails_GetNameFromId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNameFromIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRetrieveDetails_GetRemarks_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRemarks" />
+  </wsdl:message>
+  <wsdl:message name="IRetrieveDetails_GetRemarks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRemarksResponse" />
   </wsdl:message>
   <wsdl:portType name="IAddEmpRecords">
     <wsdl:operation name="AddEmployee">
@@ -50,15 +80,35 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IAddEmpRecords/AddRemarks" message="tns:IAddEmpRecords_AddRemarks_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAddEmpRecords/AddRemarksResponse" message="tns:IAddEmpRecords_AddRemarks_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="ClearAllData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAddEmpRecords/ClearAllData" message="tns:IAddEmpRecords_ClearAllData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAddEmpRecords/ClearAllDataResponse" message="tns:IAddEmpRecords_ClearAllData_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IRetrieveDetails">
     <wsdl:operation name="Search">
       <wsdl:input wsaw:Action="http://tempuri.org/IRetrieveDetails/Search" message="tns:IRetrieveDetails_Search_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRetrieveDetails/SearchResponse" message="tns:IRetrieveDetails_Search_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="SearchByName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRetrieveDetails/SearchByName" message="tns:IRetrieveDetails_SearchByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRetrieveDetails/SearchByNameResponse" message="tns:IRetrieveDetails_SearchByName_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetAllDetails">
       <wsdl:input wsaw:Action="http://tempuri.org/IRetrieveDetails/GetAllDetails" message="tns:IRetrieveDetails_GetAllDetails_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRetrieveDetails/GetAllDetailsResponse" message="tns:IRetrieveDetails_GetAllDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllRemarks">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRetrieveDetails/GetAllRemarks" message="tns:IRetrieveDetails_GetAllRemarks_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRetrieveDetails/GetAllRemarksResponse" message="tns:IRetrieveDetails_GetAllRemarks_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNameFromId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRetrieveDetails/GetNameFromId" message="tns:IRetrieveDetails_GetNameFromId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRetrieveDetails/GetNameFromIdResponse" message="tns:IRetrieveDetails_GetNameFromId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRemarks">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRetrieveDetails/GetRemarks" message="tns:IRetrieveDetails_GetRemarks_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRetrieveDetails/GetRemarksResponse" message="tns:IRetrieveDetails_GetRemarks_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IAddEmpRecords" type="tns:IAddEmpRecords">
@@ -90,6 +140,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ClearAllData">
+      <soap:operation soapAction="http://tempuri.org/IAddEmpRecords/ClearAllData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="BasicHttpBinding_IRetrieveDetails" type="tns:IRetrieveDetails">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -102,8 +161,44 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SearchByName">
+      <soap:operation soapAction="http://tempuri.org/IRetrieveDetails/SearchByName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetAllDetails">
       <soap:operation soapAction="http://tempuri.org/IRetrieveDetails/GetAllDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllRemarks">
+      <soap:operation soapAction="http://tempuri.org/IRetrieveDetails/GetAllRemarks" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNameFromId">
+      <soap:operation soapAction="http://tempuri.org/IRetrieveDetails/GetNameFromId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRemarks">
+      <soap:operation soapAction="http://tempuri.org/IRetrieveDetails/GetRemarks" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

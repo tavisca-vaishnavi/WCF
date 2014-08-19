@@ -15,24 +15,21 @@ namespace client.myservice {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Employee", Namespace="http://schemas.datacontract.org/2004/07/assg")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Remarks", Namespace="http://schemas.datacontract.org/2004/07/assg")]
     [System.SerializableAttribute()]
-    public partial class Employee : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class Remarks : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
+        private System.DateTime GetDateTimeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string RemarksField;
+        private string IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime getDateTimeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string idField;
+        private string RemarkField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -45,6 +42,93 @@ namespace client.myservice {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime GetDateTime {
+            get {
+                return this.GetDateTimeField;
+            }
+            set {
+                if ((this.GetDateTimeField.Equals(value) != true)) {
+                    this.GetDateTimeField = value;
+                    this.RaisePropertyChanged("GetDateTime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IdField, value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Remark {
+            get {
+                return this.RemarkField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RemarkField, value) != true)) {
+                    this.RemarkField = value;
+                    this.RaisePropertyChanged("Remark");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Employee", Namespace="http://schemas.datacontract.org/2004/07/assg")]
+    [System.SerializableAttribute()]
+    public partial class Employee : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IdField, value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Name {
             get {
                 return this.NameField;
@@ -53,45 +137,6 @@ namespace client.myservice {
                 if ((object.ReferenceEquals(this.NameField, value) != true)) {
                     this.NameField = value;
                     this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Remarks {
-            get {
-                return this.RemarksField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.RemarksField, value) != true)) {
-                    this.RemarksField = value;
-                    this.RaisePropertyChanged("Remarks");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime getDateTime {
-            get {
-                return this.getDateTimeField;
-            }
-            set {
-                if ((this.getDateTimeField.Equals(value) != true)) {
-                    this.getDateTimeField = value;
-                    this.RaisePropertyChanged("getDateTime");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string id {
-            get {
-                return this.idField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.idField, value) != true)) {
-                    this.idField = value;
-                    this.RaisePropertyChanged("id");
                 }
             }
         }
@@ -123,10 +168,16 @@ namespace client.myservice {
         System.Threading.Tasks.Task<int> deleteAsync(string id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAddEmpRecords/AddRemarks", ReplyAction="http://tempuri.org/IAddEmpRecords/AddRemarksResponse")]
-        client.myservice.Employee AddRemarks(string id, string remarks);
+        client.myservice.Remarks AddRemarks(string id, string remarks);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAddEmpRecords/AddRemarks", ReplyAction="http://tempuri.org/IAddEmpRecords/AddRemarksResponse")]
-        System.Threading.Tasks.Task<client.myservice.Employee> AddRemarksAsync(string id, string remarks);
+        System.Threading.Tasks.Task<client.myservice.Remarks> AddRemarksAsync(string id, string remarks);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAddEmpRecords/ClearAllData", ReplyAction="http://tempuri.org/IAddEmpRecords/ClearAllDataResponse")]
+        void ClearAllData();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAddEmpRecords/ClearAllData", ReplyAction="http://tempuri.org/IAddEmpRecords/ClearAllDataResponse")]
+        System.Threading.Tasks.Task ClearAllDataAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -172,12 +223,20 @@ namespace client.myservice {
             return base.Channel.deleteAsync(id);
         }
         
-        public client.myservice.Employee AddRemarks(string id, string remarks) {
+        public client.myservice.Remarks AddRemarks(string id, string remarks) {
             return base.Channel.AddRemarks(id, remarks);
         }
         
-        public System.Threading.Tasks.Task<client.myservice.Employee> AddRemarksAsync(string id, string remarks) {
+        public System.Threading.Tasks.Task<client.myservice.Remarks> AddRemarksAsync(string id, string remarks) {
             return base.Channel.AddRemarksAsync(id, remarks);
+        }
+        
+        public void ClearAllData() {
+            base.Channel.ClearAllData();
+        }
+        
+        public System.Threading.Tasks.Task ClearAllDataAsync() {
+            return base.Channel.ClearAllDataAsync();
         }
     }
     
@@ -191,11 +250,35 @@ namespace client.myservice {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRetrieveDetails/Search", ReplyAction="http://tempuri.org/IRetrieveDetails/SearchResponse")]
         System.Threading.Tasks.Task<client.myservice.Employee> SearchAsync(string id);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRetrieveDetails/SearchByName", ReplyAction="http://tempuri.org/IRetrieveDetails/SearchByNameResponse")]
+        client.myservice.Employee SearchByName(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRetrieveDetails/SearchByName", ReplyAction="http://tempuri.org/IRetrieveDetails/SearchByNameResponse")]
+        System.Threading.Tasks.Task<client.myservice.Employee> SearchByNameAsync(string name);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRetrieveDetails/GetAllDetails", ReplyAction="http://tempuri.org/IRetrieveDetails/GetAllDetailsResponse")]
         System.Collections.Generic.List<client.myservice.Employee> GetAllDetails();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRetrieveDetails/GetAllDetails", ReplyAction="http://tempuri.org/IRetrieveDetails/GetAllDetailsResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<client.myservice.Employee>> GetAllDetailsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRetrieveDetails/GetAllRemarks", ReplyAction="http://tempuri.org/IRetrieveDetails/GetAllRemarksResponse")]
+        System.Collections.Generic.List<client.myservice.Remarks> GetAllRemarks();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRetrieveDetails/GetAllRemarks", ReplyAction="http://tempuri.org/IRetrieveDetails/GetAllRemarksResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<client.myservice.Remarks>> GetAllRemarksAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRetrieveDetails/GetNameFromId", ReplyAction="http://tempuri.org/IRetrieveDetails/GetNameFromIdResponse")]
+        string GetNameFromId(string id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRetrieveDetails/GetNameFromId", ReplyAction="http://tempuri.org/IRetrieveDetails/GetNameFromIdResponse")]
+        System.Threading.Tasks.Task<string> GetNameFromIdAsync(string id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRetrieveDetails/GetRemarks", ReplyAction="http://tempuri.org/IRetrieveDetails/GetRemarksResponse")]
+        System.Collections.Generic.List<client.myservice.Remarks> GetRemarks(string id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRetrieveDetails/GetRemarks", ReplyAction="http://tempuri.org/IRetrieveDetails/GetRemarksResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<client.myservice.Remarks>> GetRemarksAsync(string id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -233,12 +316,44 @@ namespace client.myservice {
             return base.Channel.SearchAsync(id);
         }
         
+        public client.myservice.Employee SearchByName(string name) {
+            return base.Channel.SearchByName(name);
+        }
+        
+        public System.Threading.Tasks.Task<client.myservice.Employee> SearchByNameAsync(string name) {
+            return base.Channel.SearchByNameAsync(name);
+        }
+        
         public System.Collections.Generic.List<client.myservice.Employee> GetAllDetails() {
             return base.Channel.GetAllDetails();
         }
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<client.myservice.Employee>> GetAllDetailsAsync() {
             return base.Channel.GetAllDetailsAsync();
+        }
+        
+        public System.Collections.Generic.List<client.myservice.Remarks> GetAllRemarks() {
+            return base.Channel.GetAllRemarks();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<client.myservice.Remarks>> GetAllRemarksAsync() {
+            return base.Channel.GetAllRemarksAsync();
+        }
+        
+        public string GetNameFromId(string id) {
+            return base.Channel.GetNameFromId(id);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetNameFromIdAsync(string id) {
+            return base.Channel.GetNameFromIdAsync(id);
+        }
+        
+        public System.Collections.Generic.List<client.myservice.Remarks> GetRemarks(string id) {
+            return base.Channel.GetRemarks(id);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<client.myservice.Remarks>> GetRemarksAsync(string id) {
+            return base.Channel.GetRemarksAsync(id);
         }
     }
 }
